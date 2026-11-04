@@ -21,11 +21,11 @@ try:
     google_sheet_url = "https://docs.google.com/spreadsheets/d/1Po9b2HoB9DYWeFoUEd1gR83NI0nanNuhwqM5a47Fmgg/edit?gid=0#gid=0"
     active_sheet = gspread_client.open_by_url(google_sheet_url).sheet1
 except Exception as connection_error:
-    st.error("Error connecting to Google Sheets. Check your credentials.")
+    st.error(f"Error connecting to Google Sheets. Technical details: {connection_error}")
     st.stop()
 
 # Build the Streamlit UI
-st.title("Guardar Recurso")
+st.title("Save Resource")
 
 # Dictionary mapping the UI display (with emojis) to the clean database string
 resources_options = {
@@ -38,15 +38,15 @@ resources_options = {
 
 # Create a form to group inputs
 with st.form("resource_form"):
-    x_coord = st.number_input("Coordenada X (Columna B):", format="%f", step=0.01)
-    y_coord = st.number_input("Coordenada Y (Columna C):", format="%f", step=0.01)
+    x_coord = st.number_input("X Coordinate (Column B):", format="%f", step=0.01)
+    y_coord = st.number_input("Y Coordinate (Column C):", format="%f", step=0.01)
     
     # Dropdown using the keys of the dictionary (the ones with emojis)
-    selected_resource_ui = st.selectbox("Recurso (Columna D):", options=list(resources_options.keys()))
+    selected_resource_ui = st.selectbox("Resource (Column D):", options=list(resources_options.keys()))
     
-    optional_text = st.text_input("Texto opcional (Columna E):", placeholder="Añade una nota...")
+    optional_text = st.text_input("Optional text (Column E):", placeholder="Add a note...")
     
-    submit_button = st.form_submit_button("Guardar Datos")
+    submit_button = st.form_submit_button("Save Data")
     
     # Handle the save logic when the button is clicked
     if submit_button:
@@ -74,7 +74,7 @@ with st.form("resource_form"):
                     pass 
         
         if is_duplicate:
-            st.error("Error: Estas coordenadas ya están registradas en la hoja.")
+            st.error("Error: These coordinates are already registered in the sheet.")
         else:
             # Extract the clean string value (without emoji) to save in the sheet
             clean_resource_value = resources_options[selected_resource_ui]
@@ -83,4 +83,4 @@ with st.form("resource_form"):
             new_row_data = ["", x_coord, y_coord, clean_resource_value, optional_text]
             active_sheet.append_row(new_row_data)
             
-            st.success("Éxito: Datos guardados correctamente.")
+            st.success("Success: Data saved successfully.")
