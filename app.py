@@ -35,7 +35,8 @@ resources_options = {
     "🪙 Gold": "Gold",
     "💎 Cristal": "Cristal",
     "⛩️ Pass": "Pass",               # Pasos
-    "🗿 Altar": "Altar"
+    "🗿 Altar": "Altar",             # Altares
+    "🚩 Alliance Control Point": "Alliance Control Point" # Otros puntos de control
 }
 
 # Create a form to group inputs
