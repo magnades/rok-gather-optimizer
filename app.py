@@ -18,7 +18,7 @@ try:
     gspread_client = gspread.authorize(gcp_credentials)
     
     # Open the Google Sheet by its exact URL
-    google_sheet_url = "TU_URL_DE_GOOGLE_SHEETS_AQUI"
+    google_sheet_url = "https://docs.google.com/spreadsheets/d/1Po9b2HoB9DYWeFoUEd1gR83NI0nanNuhwqM5a47Fmgg/edit?gid=0#gid=0"
     active_sheet = gspread_client.open_by_url(google_sheet_url).sheet1
 except Exception as connection_error:
     st.error("Error connecting to Google Sheets. Check your credentials.")
