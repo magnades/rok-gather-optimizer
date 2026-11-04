@@ -35,8 +35,7 @@ resources_options = {
     "🪙 Gold": "Gold",
     "💎 Cristal": "Cristal",
     "⛩️ Pass": "Pass",               # Pasos
-    "🗿 Altar": "Altar",
-    ""
+    "🗿 Altar": "Altar"
 }
 
 # Create a form to group inputs
